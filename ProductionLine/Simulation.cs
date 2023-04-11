@@ -83,8 +83,8 @@ namespace ProductionLine
         private void PrintBelt(char?[] belt)
         {
             Console.SetCursorPosition(0, Console.WindowTop);
-            Console.WriteLine("  v   v   v   v   v  ");
-            Console.WriteLine("---------------------");
+            Console.WriteLine("  v   v   v ");
+            Console.WriteLine("------------");
             Console.Write("|");
             for (int i = 0; i < belt.Length; i++)
             {
@@ -96,8 +96,8 @@ namespace ProductionLine
                 Console.Write($" {component} |");
             }
             Console.Write('\n');
-            Console.WriteLine("---------------------");
-            Console.WriteLine("  ^   ^   ^   ^   ^  ");
+            Console.WriteLine("------------");
+            Console.WriteLine("  ^   ^   ^ ");
             Console.WriteLine($"Iteration:{iteration}");
             Console.WriteLine($"Product Count:{productCount}");
             Console.WriteLine($"Component 'A':{missedComponentACount}");

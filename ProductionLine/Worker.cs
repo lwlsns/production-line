@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,6 @@ namespace ProductionLine
         {
             PickUpComponent();
             AssembleProduct();
-            Tick();
             PlaceProduct();
         }
 
@@ -68,10 +68,20 @@ namespace ProductionLine
 
         public void AssembleProduct()
         {
-            if(CanAssembleProduct())
+            if (assemblyTimeRemaining > 0)
             {
-                assemblyTimeRemaining = 4;
-            }            
+                assemblyTimeRemaining--;
+                if (assemblyTimeRemaining == 0)
+                {
+                    hands[0] = 'P';
+                    hands[1] = null;
+                }
+            }
+            else if (CanAssembleProduct())
+            {
+                assemblyTimeRemaining = assemblyDuration;
+            }
+            
         }
 
         public bool CanPlaceProduct()
@@ -87,14 +97,6 @@ namespace ProductionLine
                 hands[0] = null;
                 hands[1] = null;
                 belt.PutItem(slotPosition, 'P');
-            }
-        }
-
-        public void Tick()
-        {
-            if (assemblyTimeRemaining > 0)
-            {
-                assemblyTimeRemaining--;
             }
         }
 
